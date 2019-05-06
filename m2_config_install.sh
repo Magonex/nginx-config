@@ -3,7 +3,7 @@
 #### IT WILL REMOVE ALL CONFIGURATION FILES THAT HAVE BEEN PREVIOUSLY INSTALLED.
 
 NGINX_EXTRA_CONF="assets.conf error_page.conf extra_protect.conf maintenance.conf php_backend.conf maps.conf phpmyadmin.conf setup.conf pagespeed.conf status.conf"
-NGINX_EXTRA_CONF_URL="https://raw.githubusercontent.com/magenx/nginx-config/master/magento2/conf_m2/"
+NGINX_EXTRA_CONF_URL="https://raw.githubusercontent.com/magonex/nginx-config/master/magento2/conf_m2/"
 
 echo "---> CREATING NGINX CONFIGURATION FILES NOW"
 echo
@@ -11,15 +11,15 @@ read -e -p "---> Enter your domain name (without www.): " -i "myshop.com" MY_DOM
 read -e -p "---> Enter your web root path: " -i "/var/www/html/magento" MY_SHOP_PATH
 read -e -p "---> Enter your web user usually www-data (nginx for Centos): " -i "www-data" MY_WEB_USER
 
-wget -qO /etc/nginx/fastcgi_params https://raw.githubusercontent.com/magenx/nginx-config/master/magento2/fastcgi_params
-wget -qO /etc/nginx/nginx.conf https://raw.githubusercontent.com/magenx/nginx-config/master/magento2/nginx.conf
+wget -qO /etc/nginx/fastcgi_params https://raw.githubusercontent.com/magonex/nginx-config/master/magento2/fastcgi_params
+wget -qO /etc/nginx/nginx.conf https://raw.githubusercontent.com/magonex/nginx-config/master/magento2/nginx.conf
 
 sed -i "s/www/sites-enabled/g" /etc/nginx/nginx.conf
 
 mkdir -p /etc/nginx/sites-enabled
 mkdir -p /etc/nginx/sites-available && cd $_
-wget -q https://raw.githubusercontent.com/magenx/nginx-config/master/magento2/sites-available/default.conf
-wget -q https://raw.githubusercontent.com/magenx/nginx-config/master/magento2/sites-available/magento2.conf
+wget -q https://raw.githubusercontent.com/magonex/nginx-config/master/magento2/sites-available/default.conf
+wget -q https://raw.githubusercontent.com/magonex/nginx-config/master/magento2/sites-available/magento2.conf
 
 sed -i "s/example.com/${MY_DOMAIN}/g" /etc/nginx/sites-available/magento2.conf
 sed -i "s,/var/www/html,${MY_SHOP_PATH},g" /etc/nginx/sites-available/magento2.conf
